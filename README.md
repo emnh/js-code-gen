@@ -18,6 +18,8 @@ JavaScript Code Generation Library
  - Output can be strongly typed
  - Is type inference (Hindley-Milner algo or such) necessary, or will it be a natural consequence of 2nd degree PL?
  - Too lazy to implement type inference, so piggyback on existing language (ReasonML?)
+ - Change oriented
+ - Append only?
 
 # Goals or less vague ideas
  - Propagate arguments from top level into deeply nested functions
