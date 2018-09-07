@@ -19,7 +19,9 @@ JavaScript Code Generation Library
  - Is type inference (Hindley-Milner algo or such) necessary, or will it be a natural consequence of 2nd degree PL?
  - Too lazy to implement type inference, so piggyback on existing language (ReasonML?)
  - Change oriented
+ - Propagation of changed values
  - Append only?
+ - Record polymorphism for joins (implicit function calls)
 
 # Goals or less vague ideas
  - Propagate arguments from top level into deeply nested functions
@@ -34,3 +36,4 @@ JavaScript Code Generation Library
  - Abstract enough to compile to WebAssembly via C (at least a subset for perf-sensitive parts), JavaScript, TypeScript
  - Live code editing
  - Integration of GLSL and JavaScript, easily pass uniforms and attributes
+ - Gradual transition from literal vanilla JS to iteratively building AST.
