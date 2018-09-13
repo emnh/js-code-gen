@@ -37,3 +37,7 @@ JavaScript Code Generation Library
  - Live code editing
  - Integration of GLSL and JavaScript, easily pass uniforms and attributes
  - Gradual transition from literal vanilla JS to iteratively building AST.
+
+# Resources
+ - https://jlongster.com/Stop-Writing-JavaScript-Compilers--Make-Macros-Instead
+ - https://www.sweetjs.org/doc/tutorial
