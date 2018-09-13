@@ -1,24 +1,18 @@
 const fs = require('fs');
 
-import {Expr, Fun, generate} from './lib.js';
+import {Expr, Fun, magic, generate} from './lib.js';
 
-var p = new Program({
-  add: x + y,
-  main: () => {
-    x = 2;
-    y = 3;
-    join(add);
-  }
-});
+const M = magic;
 
-p = p.Fun("add").push(function() {
-  return x + y;
-});
+M.fun.add = () => $x + $y;
 
-var f = new Fun("add");
+M.fun.main = () => {
+  const x = 2;
+  const y = 3;
+  const z = M.fun.add();
+  return z;
+};
 
-var main = new Fun("main");
-
-var out = generate(main);
+eval(M.fun.main);
 
 console.log(out);

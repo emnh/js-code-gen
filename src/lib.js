@@ -2,6 +2,8 @@ const esprima = require('esprima');
 
 const escodegen = require('escodegen');
 
+const fs = require('fs');
+
 function expr(s) {
   return esprima.parse(s).body;
 };
@@ -38,3 +40,68 @@ export function generate(obj) {
   const gen = escodegen.generate(template);
   return gen;
 }
+
+function walkInner(parentNode, parentProp, node, f) {
+  if (node !== null && node !== undefined && node.hasOwnProperty('type')) {
+    for (const prop in node) {
+      const value = node[prop];
+      if (node.type == 'Program' && prop == 'tokens') {
+        /* Don't process the raw tokens, only AST */
+        continue;
+      } else if (Array.isArray(value)) {
+        for (let i = 0; i < value.length; i++) {
+          walkInner(node, prop, value[i], f);
+        }
+      } else {
+        walkInner(node, prop, value, f);
+      }
+    }
+    if (node.type === 'Identifier') {
+      f(node);
+    }
+  }
+}
+
+function walk(node, f) {
+  walkInner(null, null, node, f);
+}
+
+const funHandler = {
+  set: function(obj, prop, value) {
+    const fs = '' + value;
+    const efs = esprima.parse(fs);
+    const names = [];
+    walk(efs, node => {
+      if (node.name.startsWith('$')) {
+        names.push(node.name.replace('$', ''));
+      }
+    });
+    for (const name of names) {
+      efs.body[0].expression.params.push({
+        type: 'Identifier',
+        name: name
+      });
+    }
+    // dump(esprima.parse("(x, y) => x + y;"));
+    const newValue = escodegen.generate(efs);
+    dump(newValue);
+    obj[prop] = newValue;
+    return true;
+  }
+};
+
+export const funProxy = new Proxy({}, funHandler);
+
+const xpoHandler = {
+  set: function(obj, prop, value) {
+    obj[prop] = value;
+    return true;
+  }
+};
+
+export const xpoProxy = new Proxy({}, xpoHandler);
+
+export const magic = {
+  fun: funProxy, 
+  xpo: xpoProxy,
+};
