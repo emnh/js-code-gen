@@ -22,6 +22,7 @@
   "dependencies": {
     "escodegen": "^1.11.0",
     "esprima": "^4.0.1",
+    "immer": "^1.6.0",
     "immutable": "^3.8.2",
     "nodemon": "^1.18.4",
     "webpack": "^4.17.2",
