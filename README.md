@@ -41,3 +41,44 @@ JavaScript Code Generation Library
 # Resources
  - https://jlongster.com/Stop-Writing-JavaScript-Compilers--Make-Macros-Instead
  - https://www.sweetjs.org/doc/tutorial
+ - https://gist.github.com/oxyflour/f98432aa400daa225d04
+
+# Evaluation
+
+
+## JavaScript
+
+### Pro
+ - Async / await
+ - Macros through sweet.js
+
+### Con
+ - No static typing
+
+
+## ReasonML
+
+### Pro
+ - Global type inference
+
+### Con
+ - No macros
+
+
+## TypeScript
+
+### Pro
+ - Local type inference
+
+### Con
+ - No global type inference
+
+
+## Rust
+
+### Pro
+ - Compile to WASM
+ - Macros
+
+### Con
+ - No global type inference
