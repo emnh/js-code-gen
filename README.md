@@ -41,7 +41,8 @@ JavaScript Code Generation Library
 # Resources
  - https://jlongster.com/Stop-Writing-JavaScript-Compilers--Make-Macros-Instead
  - https://www.sweetjs.org/doc/tutorial
- - https://gist.github.com/oxyflour/f98432aa400daa225d04
+ - HM type inference in TS: https://gist.github.com/oxyflour/f98432aa400daa225d04
+ - https://github.com/mjavascript/mastering-modular-javascript/tree/master/chapters
 
 # Evaluation
 
